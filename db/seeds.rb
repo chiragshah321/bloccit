@@ -1,7 +1,6 @@
 require 'random_data'
 
 50.times do
-    
     Post.create!(
         title: RandomData.random_sentence,
         body:  RandomData.random_paragraph
@@ -17,7 +16,20 @@ posts = Post.all
         )
 end
 
+puts "#{Post.count}"
+new =   Post.find_or_create_by(
+        title: "Chirag's post", 
+        body: "this is chirag's post. do not touch"
+        )
+puts "#{Post.count}"
+
+puts "#{Comment.count}"
+Comment.find_or_create_by(
+    post: new,
+    body: "chirag's comment"
+    )
+puts "#{Comment.count}"    
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
-
