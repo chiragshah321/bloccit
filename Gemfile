@@ -31,4 +31,5 @@ source 'https://rubygems.org'
  gem 'turbolinks'
  gem 'bootstrap-sass'
  gem 'shoulda'
+ gem 'bcrypt'
 
