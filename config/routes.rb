@@ -9,6 +9,11 @@ Rails.application.routes.draw do
 
   get 'about' => 'welcome#about'
   
+  resources :posts, only: [] do
+    
+    resources :comments, only: [:create, :destroy]
+  end
+  
   root 'welcome#index'
   
 end
