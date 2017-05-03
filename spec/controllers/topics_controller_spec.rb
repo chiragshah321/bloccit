@@ -278,7 +278,21 @@ RSpec.describe TopicsController, type: :controller do
       user = User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld", role: :moderator)
       create_session(user)
     end
+    
+    describe "GET new" do
+      it "returns http redirect" do
+        get :new
+        expect(response).to redirect_to(topics_path)
+      end
+    end
 
+    describe "POST create" do
+      it "returns http redirect" do
+        post :create, topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+        expect(response).to redirect_to(topics_path)
+      end
+    end
+  
     describe "GET index" do
       it "returns http success" do
         get :index
@@ -354,6 +368,13 @@ RSpec.describe TopicsController, type: :controller do
       it "redirects to topics index" do
         delete :destroy, {id: my_topic.id}
         expect(response).to redirect_to topics_path
+      end
+    end
+    
+    describe "DELETE destroy" do
+      it "returns http redirect" do
+        delete :destroy, {id: my_topic.id}
+        expect(response).to redirect_to(new_session_path)
       end
     end
   end

@@ -371,7 +371,7 @@ RSpec.describe PostsController, type: :controller do
     end
   end
   
-   context "admin user doing CRUD on a post they don't own" do
+   context "moderator user doing CRUD on a post they don't own" do
     before do
       other_user.moderator!
       create_session(other_user)
@@ -469,5 +469,13 @@ RSpec.describe PostsController, type: :controller do
         expect(response).to redirect_to [my_topic, my_post]
       end
     end
+    
+    describe "DELETE destroy" do
+      it "returns http redirect" do
+        delete :destroy, topic_id: my_topic.id, id: my_post.id
+        expect(response).to redirect_to([my_topic, my_post])
+      end
+    end
+    
 end
 end
