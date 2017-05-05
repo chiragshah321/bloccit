@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Favorite, type: :model do
   
-  let(:topic) { Topic.create!(name: name, description: description) }
-  let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
-  let(:post) { topic.posts.create!(title: title, body: body, user: user) }
+  let(:topic) { create(:topic) }
+  let(:user) { create(:user) }
+  let(:post) { create(:post) }
   let(:favorite) {Favorite.create!(post: post, user: user)}
    
   it { is_expected.to belong_to(:post)}  
