@@ -1,0 +1,13 @@
+<div class="media">
+    <div class="media-body">
+        <%= link_to favorite.post.title, topic_post_path(favorite.post.topic, favorite.post) %> 
+            <%= pluralize(favorite.post.comments.count, 'comment') %>
+            <%= pluralize(favorite.post.votes.count, 'vote') %>
+            <% avatar_url = favorite.post.user.avatar_url(64) %>
+                <% if avatar_url %>
+                        <div class="media-left">
+                        <%= image_tag avatar_url, class: 'media-object' %>
+                        </div>
+                <% end %>
+    </div>                
+</div>
